@@ -6,6 +6,7 @@ import Edituser from './component/pages/Edituser';
 import Adduser from './component/pages/Adduser';
 import Users from './component/pages/Users';
 import Navbar from './component/Navbar';
+import Details from './component/pages/Details';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Users/>}/>
           <Route path='/adduser' element={<Adduser/>}/>
           <Route path='/edit/:id' element={<Edituser/>}/>
+          <Route path='/details/:id' element={<Details/>}/>
         </Routes>
       </BrowserRouter>
     </>

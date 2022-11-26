@@ -1,7 +1,7 @@
 import './Users.css';
-import React,{ useEffect, useState } from 'react';
-import { getuser,deletesingle } from '../service/api';
-import {  useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { getuser, deletesingle } from '../service/api';
+import { useNavigate } from 'react-router-dom';
 
 const Users = () => {
     const [data, setData] = useState([]);
@@ -13,9 +13,15 @@ const Users = () => {
         let res = await getuser();
         setData(res.data);
     }
-    const deleteUser = async (id) =>{
-        await deletesingle(id);
-        getAllUser();
+    const deleteUser = async (id) => {
+        if(window.confirm("Are You Sure For Deleted That Record...!"))
+        {
+            await deletesingle(id);
+            getAllUser();
+        }else{
+            console.log("Record Is Not Deleted");
+        }
+
     }
     const navigate = useNavigate()
 
@@ -25,7 +31,6 @@ const Users = () => {
                 <table className="table table-bordered table-responsive table-striped">
                     <thead className="text-light bg-dark">
                         <tr>
-                            <th scope="col">Sr_no</th>
                             <th scope="col">Fname</th>
                             <th scope="col">Lname</th>
                             <th scope="col">Email</th>
@@ -36,23 +41,22 @@ const Users = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {
-                        data.map((all)=>{
-                            return(
-                                <tr key={all._id}>
-                            <td>{all._id}</td>
-                            <td>{all.fname}</td>
-                            <td>{all.lname}</td>
-                            <td>{all.email}</td>
-                            <td>{all.city}</td>
-                            <td><button className='btn btn-primary mx-2' onClick={()=>{navigate(`/edit/${all._id}`)}} >Edit</button></td>
-                            <td> <button className='btn btn-danger mx-2' onClick={()=> deleteUser(all._id)}>Delete</button></td>
-                            <td><button className='btn btn-success mx-2'>View</button></td>
-                        </tr>
-                            )
-                        })
-                    }
-                        
+                        {
+                            data.map((all) => {
+                                return (
+                                    <tr key={all._id}>
+                                        <td>{all.fname}</td>
+                                        <td>{all.lname}</td>
+                                        <td>{all.email}</td>
+                                        <td>{all.city}</td>
+                                        <td><button className='btn btn-primary mx-2' onClick={() => { navigate(`/edit/${all._id}`) }} >Edit</button></td>
+                                        <td> <button className='btn btn-danger mx-2' onClick={() => deleteUser(all._id)}>Delete</button></td>
+                                        <td><button className='btn btn-success mx-2' onClick={() => { navigate(`/details/${all._id}`) }}>View</button></td>
+                                    </tr>
+                                )
+                            })
+                        }
+
                     </tbody>
                 </table>
             </header>

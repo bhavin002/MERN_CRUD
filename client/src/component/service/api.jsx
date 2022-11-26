@@ -45,3 +45,12 @@ export const deletesingle = async (id) =>{
         console.log("Error While Calling deletesingle  Api ", error);
     }
 }
+
+export const userById = async (id) =>{
+    try{
+        return await axios.get(`${URL}/details/${id}`);
+     }
+     catch(error){
+         console.log("Error While Calling userById  Api ", error);
+     }
+}

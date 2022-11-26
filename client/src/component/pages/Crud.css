@@ -33,3 +33,10 @@ form{
     border-radius: 4px;
     cursor: pointer;
   }
+  .error_email{
+    color: red;
+    display: block;
+  }
+  .valid_email{
+    display: none;
+  }

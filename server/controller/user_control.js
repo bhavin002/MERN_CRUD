@@ -49,3 +49,12 @@ export const deleteUser = async (request, response) =>{
       response.status(409).json({ message: error.message })
   }
 }
+
+export const userById = async (request, response) => {
+   try{
+       const single = await user.findById(request.params.id);
+       response.status(200).json(single);
+   }catch( error ){
+       response.status(404).json({ message: error.message })
+   }
+}
