@@ -26,8 +26,12 @@ const Adduser = () => {
 
     const addinpdata = async (e)=>{
         e.preventDefault();
+        const regEx = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         if(!FormData.fname || !FormData.lname || !FormData.email || !FormData.city){
             toast.error("Please Fill All The Blank Field...!")
+        } 
+        else if(!regEx.test(FormData.email)){
+            document.getElementById('email_Error').style.display = "block";
         }
         else
         {
@@ -37,7 +41,6 @@ const Adduser = () => {
         }
         
     }
-
     return (
         <>
             <div>
@@ -48,6 +51,7 @@ const Adduser = () => {
                 <input type="text" id="lname" name="lname" value={FormData.lname} onChange={InputEvent} placeholder="Your last name.." />
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" name="email" value={FormData.email} onChange={InputEvent} placeholder="Your email.." />
+                <p id='email_Error' style={{display:'none'}}>Please Enter Valid Email!</p>
                 <label htmlFor="city">Country</label>
                 <select id="city" name="city" onChange={InputEvent} value={FormData.city}>
                     <option defaultValue={'Choose Your City...'}>Choose Your City...</option>
