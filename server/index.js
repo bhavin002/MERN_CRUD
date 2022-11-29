@@ -9,7 +9,7 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json({extended:true}));
 app.use(bodyParser.urlencoded({extended:true}));
-app.use('/',Routes);
+app.use("/",Routes)
 const PORT = 8000;
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
