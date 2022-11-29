@@ -51,7 +51,7 @@ const Adduser = () => {
                 <input type="text" id="lname" name="lname" value={FormData.lname} onChange={InputEvent} placeholder="Your last name.." />
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" name="email" value={FormData.email} onChange={InputEvent} placeholder="Your email.." />
-                <p id='email_Error' style={{display:'none'}}>Please Enter Valid Email!</p>
+                <b id='email_Error' style={{display:'none'}}>Please Enter Valid Email!</b>
                 <label htmlFor="city">Country</label>
                 <select id="city" name="city" onChange={InputEvent} value={FormData.city}>
                     <option defaultValue={'Choose Your City...'}>Choose Your City...</option>
